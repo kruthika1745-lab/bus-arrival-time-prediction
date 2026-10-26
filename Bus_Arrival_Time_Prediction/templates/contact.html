@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        🚌 SmartBus Technologies
+    </div>
+
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('history') }}">History</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+    </ul>
+
+</nav>
+
+<div class="contact-container">
+
+    <h1>📞 Contact Us</h1>
+
+    <p>
+        We'd love to hear from you. If you have any questions,
+        suggestions, or feedback, please contact us using the
+        information below.
+    </p>
+
+    <div class="contact-card">
+
+        <h2>📧 Email</h2>
+        <p>support@smartbus.com</p>
+
+    </div>
+
+    <div class="contact-card">
+
+        <h2>📱 Phone</h2>
+        <p>+91 98765 43210</p>
+
+    </div>
+
+    <div class="contact-card">
+
+        <h2>📍 Address</h2>
+        <p>
+            SmartBus Technologies<br>
+            
+            Bengaluru, Karnataka<br>
+            India - 560001
+        </p>
+
+    </div>
+
+    <div class="contact-card">
+
+        <h2>🕒 Office Hours</h2>
+
+        <p>
+            Monday - Friday<br>
+            9:00 AM - 6:00 PM
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+
+<p>© SmartBus Technologies. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+
+</html>

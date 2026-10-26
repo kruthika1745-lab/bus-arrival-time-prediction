@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Arrival Time Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav>
+        <div class="datetime">
+            <span id="clock"></span>
+        </div>
+
+        <div class="logo">
+            🚌 Bus Arrival Prediction
+        </div>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('history') }}">History</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+        </ul>
+        
+        
+
+    </nav>
+    
+
+    
+
+
+
+
+    <!-- Main Section -->
+
+    <div class="main-container">
+
+
+        <!-- Prediction Form -->
+
+        <div class="container">
+
+            <h1>Predict Bus Arrival Time</h1>
+
+            <form action="/predict" method="POST">
+
+                <label>Source</label>
+
+                <input type="text"
+                    name="source"
+                    placeholder="Enter Source"
+                    required>
+
+
+                <label>Destination</label>
+
+                <input type="text"
+                    name="destination"
+                    placeholder="Enter Destination"
+                    required>
+
+
+
+                <label>Distance (KM)</label>
+
+                <input type="number"
+                    name="distance"
+                    step="0.1"
+                    required>
+
+
+
+                <label>Traffic</label>
+
+                <select name="traffic">
+
+                    <option value="1">Low</option>
+
+                    <option value="2">Medium</option>
+
+                    <option value="3">High</option>
+
+                </select>
+
+
+
+                <label>Weather</label>
+
+                <select name="weather">
+
+
+                    <option value="1">Sunny</option>
+
+                    <option value="2">Rainy</option>
+
+                </select>
+
+
+
+
+                <label>Bus Speed (km/h)</label>
+
+                <input type="number"
+                    name="speed"
+                    step="0.1"
+                    required>
+
+
+
+                <button>
+
+                    Predict Arrival Time
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+        
+        
+
+    </div>
+
+
+   
+    <script>
+        function updateClock() {
+            const now = new Date();
+        
+            document.getElementById("clock").innerHTML =
+                now.toLocaleDateString() + " | " + now.toLocaleTimeString();
+        }
+        
+        setInterval(updateClock,1000);
+        
+        updateClock();
+        </script>
+</body>
+
+</html>

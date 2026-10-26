@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        🚌 Bus Arrival Prediction
+    </div>
+
+</nav>
+
+<div class="result-card">
+
+    <h1>Prediction Result</h1>
+
+    <div class="result-box">
+
+        
+
+        <h1>{{ prediction }} Minutes</h1>
+
+        {% if prediction < 20 %}
+
+            <h2 class="ontime">🟢 Bus Status : On Time</h2>
+
+        {% elif prediction < 40 %}
+
+            <h2 class="moderate">🟡 Bus Status : Moderate Delay</h2>
+
+        {% else %}
+
+            <h2 class="delay">🔴 Bus Status : Delayed</h2>
+
+        {% endif %}
+
+    </div>
+
+    <a href="/" class="back-btn">⬅ Predict Again</a>
+
+</div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bus Arrival Time Prediction - Register</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(125, 40, 255, 0.35),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 80%,
+                    rgba(0, 102, 255, 0.25),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #030625,
+                    #080b3d 45%,
+                    #17064a
+                );
+
+            color: white;
+
+            overflow: hidden;
+        }
+
+
+        /* Background glowing circles */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            background: rgba(76, 0, 255, 0.18);
+
+            filter: blur(80px);
+
+            top: -150px;
+            left: -100px;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: rgba(0, 119, 255, 0.18);
+
+            filter: blur(100px);
+
+            bottom: -200px;
+            right: -150px;
+        }
+
+
+        /* Main container */
+
+        .container {
+
+            width: 100%;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 50px;
+
+            padding: 30px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* LEFT SIDE */
+
+        .left-section {
+
+            width: 40%;
+
+            padding: 20px 40px;
+        }
+
+
+        .logo {
+
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087cff,
+                    #8c24ff
+                );
+
+            font-size: 36px;
+
+            box-shadow:
+                0 0 25px rgba(92, 39, 255, 0.6);
+        }
+
+
+        .brand-title {
+
+            font-size: 42px;
+
+            line-height: 1.15;
+
+            margin-top: 25px;
+
+            font-weight: 700;
+        }
+
+
+        .brand-title span {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #1688ff,
+                    #c020ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .line {
+
+            width: 75px;
+
+            height: 5px;
+
+            margin: 25px 0;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #008cff,
+                    #d000ff
+                );
+        }
+
+
+        .description {
+
+            color: #c7c9df;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            max-width: 420px;
+        }
+
+
+        /* FEATURES */
+
+        .features {
+
+            margin-top: 35px;
+        }
+
+
+        .feature {
+
+            display: flex;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .feature-icon {
+
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #086cff,
+                    #7020ff
+                );
+
+            font-size: 22px;
+
+            margin-right: 16px;
+
+            box-shadow:
+                0 0 20px rgba(60, 60, 255, 0.35);
+        }
+
+
+        .feature h4 {
+
+            font-size: 15px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .feature p {
+
+            font-size: 12px;
+
+            color: #9fa4c4;
+        }
+
+
+        /* REGISTER CARD */
+
+        .register-card {
+
+            width: 480px;
+
+            padding: 40px 45px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(12, 15, 65, 0.72);
+
+            border:
+                1px solid rgba(
+                    150,
+                    130,
+                    255,
+                    0.35
+                );
+
+            box-shadow:
+                0 25px 80px rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                ),
+                inset 0 0 40px rgba(
+                    100,
+                    70,
+                    255,
+                    0.08
+                );
+
+            backdrop-filter: blur(20px);
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+
+        /* REGISTER ICON */
+
+        .register-icon {
+
+            width: 75px;
+            height: 75px;
+
+            margin:
+                0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            font-size: 32px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087cff,
+                    #a000ff
+                );
+
+            box-shadow:
+                0 0 35px rgba(
+                    93,
+                    45,
+                    255,
+                    0.7
+                );
+
+            border:
+                5px solid rgba(
+                    150,
+                    120,
+                    255,
+                    0.2
+                );
+        }
+
+
+        .register-title {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .register-subtitle {
+
+            text-align: center;
+
+            color: #9fa4c4;
+
+            font-size: 14px;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* INPUT */
+
+        .input-group {
+
+            margin-bottom: 17px;
+        }
+
+
+        .input-group label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            margin-bottom: 7px;
+        }
+
+
+        .input-box {
+
+            position: relative;
+        }
+
+
+        .input-box span {
+
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 18px;
+
+            z-index: 2;
+        }
+
+
+        .input-box input {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding:
+                0 18px 0 50px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid rgba(
+                    112,
+                    91,
+                    255,
+                    0.55
+                );
+
+            outline: none;
+
+            background:
+                rgba(
+                    20,
+                    24,
+                    80,
+                    0.75
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+            position: relative;
+
+            z-index: 20;
+        }
+
+
+        .input-box input:focus {
+
+            border-color: #9b3cff;
+
+            box-shadow:
+                0 0 18px rgba(
+                    124,
+                    40,
+                    255,
+                    0.3
+                );
+        }
+
+
+        .input-box input::placeholder {
+
+            color: #777ca3;
+        }
+
+
+        /* REGISTER BUTTON */
+
+        .register-btn {
+
+            width: 100%;
+
+            height: 53px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #087cff,
+                    #8d20ff
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 25px rgba(
+                    85,
+                    40,
+                    255,
+                    0.35
+                );
+
+            margin-top: 5px;
+        }
+
+
+        .register-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(
+                    100,
+                    40,
+                    255,
+                    0.55
+                );
+        }
+
+
+        /* DIVIDER */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin: 22px 0;
+
+            color: #8589aa;
+
+            font-size: 13px;
+        }
+
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.15
+                );
+        }
+
+
+        /* LOGIN */
+
+        .login-link {
+
+            text-align: center;
+
+            color: #9fa4c4;
+
+            font-size: 14px;
+        }
+
+
+        .login-link a {
+
+            color: #b832ff;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        .login-link a:hover {
+
+            color: #6b9cff;
+        }
+
+
+        /* FLASH MESSAGE */
+
+        .message {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            background:
+                rgba(
+                    0,
+                    255,
+                    150,
+                    0.1
+                );
+
+            color: #6effb2;
+
+            font-size: 13px;
+        }
+
+
+        /* BUS */
+
+        .bus-decoration {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 20px;
+
+            font-size: 170px;
+
+            opacity: 0.12;
+
+            transform:
+                scaleX(-1);
+
+            filter:
+                drop-shadow(
+                    0 0 30px #8c30ff
+                );
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+
+            position: fixed;
+
+            bottom: 25px;
+
+            left: 55px;
+
+            color: #72779c;
+
+            font-size: 12px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+
+            .left-section {
+                display: none;
+            }
+
+            .register-card {
+                width: 450px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+
+
+        @media (max-width: 520px) {
+
+            .register-card {
+
+                width: 100%;
+
+                padding:
+                    30px 25px;
+            }
+
+            .register-title {
+                font-size: 25px;
+            }
+
+            .footer {
+                display: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- LEFT SECTION -->
+
+    <div class="left-section">
+
+        <div class="logo">
+            🚌
+        </div>
+
+
+        <h1 class="brand-title">
+
+            Bus Arrival Time<br>
+
+            <span>Prediction</span>
+
+        </h1>
+
+
+        <div class="line"></div>
+
+
+        <p class="description">
+
+            Smart predictions for smarter travel.
+            Plan your journey better with
+            accurate bus arrival time predictions.
+
+        </p>
+
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⏱
+                </div>
+
+                <div>
+
+                    <h4>
+                        Accurate Predictions
+                    </h4>
+
+                    <p>
+                        ML-powered arrival time prediction
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h4>
+                        Plan Your Journey
+                    </h4>
+
+                    <p>
+                        Save time and travel stress-free
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🛡
+                </div>
+
+                <div>
+
+                    <h4>
+                        Reliable & Secure
+                    </h4>
+
+                    <p>
+                        Your data is safe with us
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- REGISTER CARD -->
+
+    <div class="register-card">
+
+
+        <div class="register-icon">
+            👤
+        </div>
+
+
+        <h2 class="register-title">
+            Create Account
+        </h2>
+
+
+        <p class="register-subtitle">
+            Register to start using Bus Arrival Prediction
+        </p>
+
+
+
+        <form method="POST"
+              action="{{ url_for('register') }}">
+
+
+            <!-- USERNAME -->
+
+            <div class="input-group">
+
+                <label>
+                    Username
+                </label>
+
+                <div class="input-box">
+
+                    <span>👤</span>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="input-group">
+
+                <label>
+                    Email
+                </label>
+
+                <div class="input-box">
+
+                    <span>📧</span>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>🔑</span>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="input-group">
+
+                <label>
+                    Confirm Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>🔐</span>
+
+                    <input
+                        type="password"
+                        name="confirm"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REGISTER BUTTON -->
+
+            <button
+                type="submit"
+                class="register-btn">
+
+                Create Account&nbsp;&nbsp; →
+
+            </button>
+
+
+        </form>
+
+
+
+        <div class="divider">
+            or
+        </div>
+
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+        </div>
+
+
+
+        <!-- FLASH MESSAGES -->
+
+        {% for message in get_flashed_messages() %}
+
+            <div class="message">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+
+</div>
+
+
+
+<!-- BUS DECORATION -->
+
+<div class="bus-decoration">
+    🚌
+</div>
+
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Bus Arrival Time Prediction.
+    All rights reserved.
+
+</div>
+
+
+</body>
+
+</html>

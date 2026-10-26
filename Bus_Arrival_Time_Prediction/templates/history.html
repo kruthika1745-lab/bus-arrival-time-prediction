@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <div class="logo">🚌 Bus Arrival Prediction</div>
+
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('history') }}">History</a></li>
+    </ul>
+</nav>
+
+<div class="history-page">
+
+    <h1>Prediction History</h1>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Arrival Time</th>
+        </tr>
+
+        {% for row in predictions %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[7]|round(2) }} Minutes</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>
